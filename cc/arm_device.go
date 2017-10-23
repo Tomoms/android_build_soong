@@ -99,7 +99,7 @@ var (
 		},
 		"armv7-a-neon": []string{
 			"-mfloat-abi=softfp",
-			"-mfpu=neon",
+			"-mfpu=neon-vfpv4",
 		},
 	}
 
@@ -112,6 +112,7 @@ var (
 		},
 		"cortex-a15": []string{
 			"-mcpu=cortex-a15",
+			"-mfpu=neon-vfpv4",
 			// Fake an ARM compiler flag as these processors support LPAE which GCC/clang
 			// don't advertise.
 			"-D__ARM_FEATURE_LPAE=1",
