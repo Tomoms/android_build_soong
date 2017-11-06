@@ -75,7 +75,6 @@ var (
 	GccCppStdVersion          = "gnu++11"
 	ExperimentalCStdVersion   = "gnu11"
 	ExperimentalCppStdVersion = "gnu++1z"
-	SDClang                   = false
 
 	NdkMaxPrebuiltVersionInt = 24
 
@@ -83,6 +82,7 @@ var (
 	ClangDefaultBase         = "prebuilts/clang/host"
 	ClangDefaultVersion      = "clang-r328903"
 	ClangDefaultShortVersion = "7.0.2"
+	SDClang                   = true
 )
 
 var pctx = android.NewPackageContext("android/soong/cc/config")
@@ -194,8 +194,10 @@ func init() {
 }
 
 func setSdclangVars() {
-	sdclangPath := ""
-	sdclangPath2 := ""
+//	sdclangPath := os.Getenv("SDCLANG_PATH")
+//	sdclangPath2 := os.Getenv("SDCLANG_PATH2")
+	sdclangPath := "prebuilts/snapdragon-llvm/toolchains/llvm-Snapdragon_LLVM_for_Android_4.0/prebuilt/linux-x86_64/bin"
+	sdclangPath2 := "prebuilts/snapdragon-llvm/toolchains/llvm-Snapdragon_LLVM_for_Android_4.0/prebuilt/linux-x86_64/bin"
 	sdclangAEFlag := ""
 	sdclangFlags := ""
 	sdclangFlags2 := ""
@@ -218,7 +220,7 @@ func setSdclangVars() {
 		if err := decoder.Decode(&aeConfig); err == nil {
 			sdclangAEFlag = aeConfig.SDCLANG_AE_FLAG
 		} else {
-			panic(err)
+//			panic(err)
 		}
 	}
 
@@ -295,10 +297,10 @@ func setSdclangVars() {
 				fmt.Println("Clang SA is not enabled")
 			}
 		} else {
-			panic(err)
+//			panic(err)
 		}
 	} else {
-		fmt.Println(err)
+//		fmt.Println(err)
 	}
 
 	// Override SDCLANG if the varialbe is set in the environment
