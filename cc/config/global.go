@@ -76,8 +76,8 @@ var (
 
 	// prebuilts/clang default settings.
 	ClangDefaultBase         = "prebuilts/clang/host"
-	ClangDefaultVersion      = "clang-4579689"
-	ClangDefaultShortVersion = "6.0.1"
+	ClangDefaultVersion      = "clang-4679922"
+	ClangDefaultShortVersion = "7.0.1"
 )
 
 var pctx = android.NewPackageContext("android/soong/cc/config")
