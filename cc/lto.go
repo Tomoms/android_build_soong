@@ -89,6 +89,7 @@ func (lto *lto) flags(ctx BaseModuleContext, flags Flags) Flags {
 		}
 
 		flags.CFlags = append(flags.CFlags, ltoFlag)
+		flags.AsFlags = append(flags.AsFlags, ltoFlag)
 		flags.LdFlags = append(flags.LdFlags, ltoFlag)
 		if ctx.Device() {
 			// Work around bug in Clang that doesn't pass correct emulated
@@ -134,6 +135,26 @@ func (lto *lto) LTO() bool {
 // Is lto.never explicitly set to true?
 func (lto *lto) Disabled() bool {
 	return lto.Properties.Lto.Never != nil && *lto.Properties.Lto.Never
+}
+
+func (lto *lto) EnableFull(ctx android.BaseModuleContext) {
+	if lto == nil || lto.Disabled() {
+		ctx.ModuleErrorf("does not support LTO")
+	}
+	if Bool(lto.Properties.Lto.Thin) {
+		ctx.PropertyErrorf("LTO", "FullLTO and ThinLTO are mutually exclusive")
+	}
+	lto.Properties.Lto.Full = boolPtr(true)
+}
+
+func (lto *lto) EnableThin(ctx android.BaseModuleContext) {
+	if lto == nil || lto.Disabled() {
+		ctx.ModuleErrorf("does not support LTO")
+	}
+	if Bool(lto.Properties.Lto.Full) {
+		ctx.PropertyErrorf("LTO", "FullLTO and ThinLTO are mutually exclusive")
+	}
+	lto.Properties.Lto.Thin = boolPtr(true)
 }
 
 // Propagate lto requirements down from binaries
