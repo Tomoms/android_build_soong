@@ -39,7 +39,7 @@ var (
 		"-D__STDC_CONSTANT_MACROS",
 
 		// HOST_RELEASE_CFLAGS
-		"-O2", // from build/core/combo/select.mk
+		"-O3", // from build/core/combo/select.mk
 		"-g",  // from build/core/combo/select.mk
 		"-fno-strict-aliasing", // from build/core/combo/select.mk
 		"-isysroot ${macSdkRoot}",

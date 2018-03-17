@@ -24,7 +24,7 @@ var (
 	x86_64Cflags = []string{
 		"-fno-exceptions", // from build/core/combo/select.mk
 		"-Wno-multichar",  // from build/core/combo/select.mk
-		"-O2",
+		"-O3",
 		"-Wa,--noexecstack",
 		"-Werror=format-security",
 		"-D_FORTIFY_SOURCE=2",
@@ -46,7 +46,7 @@ var (
 		"-Werror=implicit-function-declaration",
 
 		// TARGET_RELEASE_CFLAGS from build/core/combo/select.mk
-		"-O2",
+		"-O3",
 		"-g",
 		"-fno-strict-aliasing",
 	}

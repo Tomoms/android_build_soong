@@ -24,7 +24,7 @@ var (
 	mipsCflags = []string{
 		"-fno-exceptions", // from build/core/combo/select.mk
 		"-Wno-multichar",  // from build/core/combo/select.mk
-		"-O2",
+		"-O3",
 		"-fomit-frame-pointer",
 		"-fno-strict-aliasing",
 		"-funswitch-loops",
