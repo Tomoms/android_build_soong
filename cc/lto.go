@@ -49,6 +49,9 @@ type LTOProperties struct {
 	// since it is an object dependency of an LTO module.
 	FullDep bool `blueprint:"mutated"`
 	ThinDep bool `blueprint:"mutated"`
+
+	// Use clang lld instead of gnu ld.
+	Use_clang_lld *bool
 }
 
 type lto struct {
@@ -67,6 +70,13 @@ func (lto *lto) begin(ctx BaseModuleContext) {
 
 func (lto *lto) deps(ctx BaseModuleContext, deps Deps) Deps {
 	return deps
+}
+
+func (lto *lto) useClangLld(ctx BaseModuleContext) bool {
+	if lto.Properties.Use_clang_lld != nil {
+		return Bool(lto.Properties.Use_clang_lld)
+	}
+	return ctx.Config().UseClangLld()
 }
 
 func (lto *lto) flags(ctx BaseModuleContext, flags Flags) Flags {
@@ -88,7 +98,7 @@ func (lto *lto) flags(ctx BaseModuleContext, flags Flags) Flags {
 		}
 		flags.ArGoldPlugin = true
 
-		if ctx.Config().IsEnvTrue("USE_THINLTO_CACHE") && Bool(lto.Properties.Lto.Thin) {
+		if ctx.Config().IsEnvTrue("USE_THINLTO_CACHE") && Bool(lto.Properties.Lto.Thin) && !lto.useClangLld(ctx) {
 			// Set appropriate ThinLTO cache policy
 			cacheDirFormat := "-Wl,-plugin-opt,cache-dir="
 			cacheDir := android.PathForOutput(ctx, "thinlto-cache").String()
@@ -103,7 +113,7 @@ func (lto *lto) flags(ctx BaseModuleContext, flags Flags) Flags {
 
 		// If the module does not have a profile, be conservative and do not inline
 		// or unroll loops during LTO, in order to prevent significant size bloat.
-		if !ctx.isPgoCompile() {
+		if !ctx.isPgoCompile() && !lto.useClangLld(ctx) {
 			flags.LdFlags = append(flags.LdFlags, "-Wl,-plugin-opt,-inline-threshold=0")
 			flags.LdFlags = append(flags.LdFlags, "-Wl,-plugin-opt,-unroll-threshold=0")
 		}
