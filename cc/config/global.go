@@ -76,8 +76,8 @@ var (
 
 	// prebuilts/clang default settings.
 	ClangDefaultBase         = "prebuilts/clang/host"
-	ClangDefaultVersion      = "clang-4679922"
-	ClangDefaultShortVersion = "7.0.1"
+	ClangDefaultVersion      = "clang-r328903"
+	ClangDefaultShortVersion = "7.0.2"
 )
 
 var pctx = android.NewPackageContext("android/soong/cc/config")
@@ -153,8 +153,8 @@ func init() {
 	// These are tied to the version of LLVM directly in external/llvm, so they might trail the host prebuilts
 	// being used for the rest of the build process.
 	pctx.SourcePathVariable("RSClangBase", "prebuilts/clang/host")
-	pctx.SourcePathVariable("RSClangVersion", "clang-3289846")
-	pctx.SourcePathVariable("RSReleaseVersion", "3.8")
+	pctx.SourcePathVariable("RSClangVersion", "clang-r328903")
+	pctx.SourcePathVariable("RSReleaseVersion", "7.0.2")
 	pctx.StaticVariable("RSLLVMPrebuiltsPath", "${RSClangBase}/${HostPrebuiltTag}/${RSClangVersion}/bin")
 	pctx.StaticVariable("RSIncludePath", "${RSLLVMPrebuiltsPath}/../lib64/clang/${RSReleaseVersion}/include")
 
