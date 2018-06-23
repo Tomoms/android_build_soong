@@ -163,7 +163,7 @@ var (
 )
 
 const (
-	armGccVersion = "6.x"
+	armGccVersion = "7.x"
 )
 
 func init() {
