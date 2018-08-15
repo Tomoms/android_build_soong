@@ -36,6 +36,7 @@ var (
 		"-Wno-unused",
 		"-Winit-self",
 		"-Wpointer-arith",
+		"-Wno-error=misleading-indentation",
 
 		// COMMON_RELEASE_CFLAGS
 		"-DNDEBUG",
@@ -194,12 +195,10 @@ func init() {
 }
 
 func setSdclangVars() {
-//	sdclangPath := os.Getenv("SDCLANG_PATH")
-//	sdclangPath2 := os.Getenv("SDCLANG_PATH2")
-	sdclangPath := "prebuilts/snapdragon-llvm/toolchains/llvm-Snapdragon_LLVM_for_Android_4.0/prebuilt/linux-x86_64/bin"
-	sdclangPath2 := "prebuilts/snapdragon-llvm/toolchains/llvm-Snapdragon_LLVM_for_Android_4.0/prebuilt/linux-x86_64/bin"
+	sdclangPath := "prebuilts/clang/host/linux-x86/sdclang-4.0.14/bin"
+	sdclangPath2 := "prebuilts/clang/host/linux-x86/sdclang-4.0.14/bin"
 	sdclangAEFlag := ""
-	sdclangFlags := ""
+	sdclangFlags := "-O3 -Wno-vectorizer-no-neon"
 	sdclangFlags2 := ""
 
 	product := os.Getenv("TARGET_PRODUCT")
