@@ -196,9 +196,9 @@ func init() {
 
 func setSdclangVars() {
 	sdclangPath := "prebuilts/clang/host/linux-x86/sdclang-4.0.14/bin"
-	sdclangPath2 := "prebuilts/clang/host/linux-x86/sdclang-4.0.14/bin"
+	sdclangPath2 := ""
 	sdclangAEFlag := ""
-	sdclangFlags := "-O3 -Wno-vectorizer-no-neon"
+	sdclangFlags := "-O3 -fvectorize -mllvm -polly-run-dce"
 	sdclangFlags2 := ""
 
 	product := os.Getenv("TARGET_PRODUCT")
