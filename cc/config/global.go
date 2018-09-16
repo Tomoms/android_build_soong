@@ -196,7 +196,7 @@ func init() {
 
 func setSdclangVars() {
 	sdclangPath := "prebuilts/clang/host/linux-x86/sdclang-4.0.14/bin"
-	sdclangPath2 := ""
+	sdclangPath2 := "prebuilts/clang/host/linux-x86/sdclang-4.0.14/bin"
 	sdclangAEFlag := ""
 	sdclangFlags := "-O3 -fvectorize -mllvm -polly-run-dce"
 	sdclangFlags2 := ""
