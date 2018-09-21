@@ -81,8 +81,8 @@ var (
 
 	// prebuilts/clang default settings.
 	ClangDefaultBase         = "prebuilts/clang/host"
-	ClangDefaultVersion      = "clang-r328903"
-	ClangDefaultShortVersion = "7.0.2"
+	ClangDefaultVersion      = "clang-r339409"
+	ClangDefaultShortVersion = "8.0.1"
 	SDClang                   = true
 )
 
