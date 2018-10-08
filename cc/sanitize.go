@@ -43,7 +43,8 @@ var (
 	cfiStaticLibsMutex sync.Mutex
 
 	intOverflowCflags   = []string{"-fsanitize-blacklist=build/soong/cc/config/integer_overflow_blacklist.txt"}
-	minimalRuntimeFlags = []string{"-fsanitize-minimal-runtime", "-fno-sanitize-trap=integer", "-fno-sanitize-recover=integer"}
+	minimalRuntimeFlags = []string{"-fsanitize-minimal-runtime", "-fno-sanitize-trap=integer,undefined",
+		"-fno-sanitize-recover=integer,undefined"}
 )
 
 type sanitizerType int
