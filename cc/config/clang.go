@@ -90,11 +90,9 @@ var ClangUnknownLldflags = sorted([]string{
 	"-Wl,-m,aarch64_elf64_le_vec",
 })
 
-var ClangLibToolingUnknownCflags = []string{
-	"-flto*",
-	"-fsanitize*",
+var ClangLibToolingUnknownCflags = sorted([]string{
 	"-fno-sanitize=implicit-integer-sign-change",
-}
+})
 
 func init() {
 	pctx.StaticVariable("ClangExtraCflags", strings.Join([]string{
