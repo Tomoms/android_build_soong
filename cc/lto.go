@@ -117,13 +117,6 @@ func (lto *lto) flags(ctx BaseModuleContext, flags Flags) Flags {
 			policy := "cache_size=10%:cache_size_bytes=10g"
 			flags.LdFlags = append(flags.LdFlags, cachePolicyFormat+policy)
 		}
-
-		// If the module does not have a profile, be conservative and do not inline
-		// or unroll loops during LTO, in order to prevent significant size bloat.
-		if !ctx.isPgoCompile() && !lto.useClangLld(ctx) {
-			flags.LdFlags = append(flags.LdFlags, "-Wl,-plugin-opt,-inline-threshold=0")
-			flags.LdFlags = append(flags.LdFlags, "-Wl,-plugin-opt,-unroll-threshold=0")
-		}
 	}
 	return flags
 }
