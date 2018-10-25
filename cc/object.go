@@ -39,6 +39,10 @@ func objectFactory() android.Module {
 		baseLinker: NewBaseLinker(),
 	}
 	module.compiler = NewBaseCompiler()
+
+	// Clang's address-significance tables are incompatible with ld -r.
+	module.compiler.appendCflags([]string{"-fno-addrsig"})
+
 	return module.Init()
 }
 
