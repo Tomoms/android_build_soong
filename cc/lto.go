@@ -96,7 +96,6 @@ func (lto *lto) flags(ctx BaseModuleContext, flags Flags) Flags {
 			// https://github.com/android-ndk/ndk/issues/498.
 			flags.LdFlags = append(flags.LdFlags, "-Wl,-plugin-opt,-emulated-tls")
 		}
-		flags.ArGoldPlugin = true
 
 		if ctx.Config().IsEnvTrue("USE_THINLTO_CACHE") && Bool(lto.Properties.Lto.Thin) {
 			var cacheDirFormat string

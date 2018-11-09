@@ -421,7 +421,6 @@ func (sanitize *sanitize) flags(ctx ModuleContext, flags Flags) Flags {
 			// See b/72706604 or https://github.com/android-ndk/ndk/issues/498.
 			flags.LdFlags = append(flags.LdFlags, "-Wl,-plugin-opt,-emulated-tls")
 		}
-		flags.ArGoldPlugin = true
 		if Bool(sanitize.Properties.Sanitize.Diag.Cfi) {
 			diagSanitizers = append(diagSanitizers, "cfi")
 		}
