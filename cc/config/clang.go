@@ -85,6 +85,7 @@ var ClangUnknownCflags = sorted([]string{
 var ClangLibToolingUnknownCflags = []string{
 	"-flto*",
 	"-fsanitize*",
+	"-fno-sanitize=implicit-integer-sign-change",
 }
 
 func init() {
@@ -145,6 +146,7 @@ func init() {
 	}, " "))
 
 	pctx.StaticVariable("ClangExtraNoOverrideCflags", strings.Join([]string{
+
 		"-Werror=address-of-temporary",
 		// Bug: http://b/29823425 Disable -Wnull-dereference until the
 		// new cases detected by this warning in Clang r271374 are
