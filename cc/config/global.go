@@ -81,8 +81,8 @@ var (
 
 	// prebuilts/clang default settings.
 	ClangDefaultBase         = "prebuilts/clang/host"
-	ClangDefaultVersion      = "clang-r339409b"
-	ClangDefaultShortVersion = "8.0.2"
+	ClangDefaultVersion      = "clang-r346389b"
+	ClangDefaultShortVersion = "8.0.6"
 	SDClang                   = true
 )
 
@@ -159,8 +159,8 @@ func init() {
 	// These are tied to the version of LLVM directly in external/llvm, so they might trail the host prebuilts
 	// being used for the rest of the build process.
 	pctx.SourcePathVariable("RSClangBase", "prebuilts/clang/host")
-	pctx.SourcePathVariable("RSClangVersion", "clang-r339409b")
-	pctx.SourcePathVariable("RSReleaseVersion", "8.0.2")
+	pctx.SourcePathVariable("RSClangVersion", "clang-r346389b")
+	pctx.SourcePathVariable("RSReleaseVersion", "8.0.6")
 	pctx.StaticVariable("RSLLVMPrebuiltsPath", "${RSClangBase}/${HostPrebuiltTag}/${RSClangVersion}/bin")
 	pctx.StaticVariable("RSIncludePath", "${RSLLVMPrebuiltsPath}/../lib64/clang/${RSReleaseVersion}/include")
 
