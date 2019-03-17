@@ -460,8 +460,6 @@ func (sanitize *sanitize) flags(ctx ModuleContext, flags Flags) Flags {
 				flags.LdFlags = append(flags.LdFlags, "-Wl,--exclude-libs,"+minimalRuntimeLib)
 			}
 		}
-		// clang-8
-		flags.CFlags = append(flags.CFlags, "-fno-sanitize=implicit-integer-sign-change")
 	}
 
 	if len(diagSanitizers) > 0 {
