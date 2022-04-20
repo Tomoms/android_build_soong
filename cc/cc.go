@@ -1883,6 +1883,8 @@ func (c *Module) GenerateAndroidBuildActions(actx android.ModuleContext) {
 
 	if c.Properties.Clang != nil && *c.Properties.Clang == false {
 		ctx.PropertyErrorf("clang", "false (GCC) is no longer supported")
+	} else if c.Properties.Clang != nil && !ctx.DeviceConfig().BuildBrokenClangProperty() {
+		ctx.PropertyErrorf("clang", "property is deprecated, see Changes.md file")
 	}
 
 	flags := Flags{
