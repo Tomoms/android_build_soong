@@ -111,6 +111,9 @@ var (
 
 		// Turn off FMA which got enabled by default in clang-r445002 (http://b/218805949)
 		"-ffp-contract=off",
+
+		// Experimental O3 build system wide
+		"-O3",
 	}
 
 	commonGlobalConlyflags = []string{}
