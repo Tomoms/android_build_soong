@@ -2060,7 +2060,7 @@ func (c *config) UseHostMusl() bool {
 	return Bool(c.productVariables.HostMusl)
 }
 
-func (c *config) LogMixedBuild(ctx ModuleContext, useBazel bool) {
+func (c *config) LogMixedBuild(ctx BaseModuleContext, useBazel bool) {
 	moduleName := ctx.Module().Name()
 	c.mixedBuildsLock.Lock()
 	defer c.mixedBuildsLock.Unlock()
