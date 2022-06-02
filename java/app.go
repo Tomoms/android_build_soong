@@ -1042,7 +1042,7 @@ func (a *AndroidTest) OverridablePropertiesDepsMutator(ctx android.BottomUpMutat
 func AndroidTestFactory() android.Module {
 	module := &AndroidTest{}
 
-	module.Module.dexProperties.Optimize.EnabledByDefault = true
+	module.Module.dexProperties.Optimize.EnabledByDefault = false
 
 	module.Module.properties.Instrument = true
 	module.Module.properties.Supports_static_instrumentation = true
@@ -1096,6 +1096,7 @@ func (a *AndroidTestHelperApp) InstallInTestcases() bool {
 func AndroidTestHelperAppFactory() android.Module {
 	module := &AndroidTestHelperApp{}
 
+	// TODO(b/192032291): Disable by default after auditing downstream usage.
 	module.Module.dexProperties.Optimize.EnabledByDefault = true
 
 	module.Module.properties.Installable = proptools.BoolPtr(true)
