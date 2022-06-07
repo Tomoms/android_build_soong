@@ -62,6 +62,9 @@ func RegisterCCBuildComponents(ctx android.RegistrationContext) {
 		ctx.TopDown("sanitize_runtime_deps", sanitizerRuntimeDepsMutator).Parallel()
 		ctx.BottomUp("sanitize_runtime", sanitizerRuntimeMutator).Parallel()
 
+		ctx.TopDown("fuzz_deps", fuzzMutatorDeps)
+		ctx.BottomUp("fuzz", fuzzMutator)
+
 		ctx.BottomUp("coverage", coverageMutator).Parallel()
 
 		ctx.TopDown("afdo_deps", afdoDepsMutator)
@@ -818,6 +821,7 @@ type Module struct {
 	stl      *stl
 	sanitize *sanitize
 	coverage *coverage
+	fuzzer   *fuzzer
 	sabi     *sabi
 	vndkdep  *vndkdep
 	lto      *lto
@@ -1141,6 +1145,9 @@ func (c *Module) Init() android.Module {
 	}
 	if c.coverage != nil {
 		c.AddProperties(c.coverage.props()...)
+	}
+	if c.fuzzer != nil {
+		c.AddProperties(c.fuzzer.props()...)
 	}
 	if c.sabi != nil {
 		c.AddProperties(c.sabi.props()...)
@@ -1670,6 +1677,7 @@ func newModule(hod android.HostOrDeviceSupported, multilib android.Multilib) *Mo
 	module.stl = &stl{}
 	module.sanitize = &sanitize{}
 	module.coverage = &coverage{}
+	module.fuzzer = &fuzzer{}
 	module.sabi = &sabi{}
 	module.vndkdep = &vndkdep{}
 	module.lto = &lto{}
@@ -1868,6 +1876,9 @@ func (c *Module) GenerateAndroidBuildActions(actx android.ModuleContext) {
 	}
 	if c.coverage != nil {
 		flags, deps = c.coverage.flags(ctx, flags, deps)
+	}
+	if c.fuzzer != nil {
+		flags = c.fuzzer.flags(ctx, flags)
 	}
 	if c.lto != nil {
 		flags = c.lto.flags(ctx, flags)
