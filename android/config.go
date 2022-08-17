@@ -782,7 +782,7 @@ func (c *config) PlatformVersionLastStable() string {
 }
 
 func (c *config) MinSupportedSdkVersion() ApiLevel {
-	return uncheckedFinalApiLevel(19)
+	return uncheckedFinalApiLevel(21)
 }
 
 func (c *config) FinalApiLevels() []ApiLevel {
