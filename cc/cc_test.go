@@ -3989,7 +3989,7 @@ func TestIncludeDirsExporting(t *testing.T) {
 			name: "libfoo",
 			srcs: [
 				"foo.c",
-				"a.sysprop",
+				"path/to/a.sysprop",
 				"b.aidl",
 				"a.proto",
 			],
@@ -4002,11 +4002,11 @@ func TestIncludeDirsExporting(t *testing.T) {
 			`),
 			expectedSystemIncludeDirs(``),
 			expectedGeneratedHeaders(`
-				.intermediates/libfoo/android_arm64_armv8-a_shared/gen/sysprop/include/a.sysprop.h
+				.intermediates/libfoo/android_arm64_armv8-a_shared/gen/sysprop/include/path/to/a.sysprop.h
 			`),
 			expectedOrderOnlyDeps(`
-				.intermediates/libfoo/android_arm64_armv8-a_shared/gen/sysprop/include/a.sysprop.h
-				.intermediates/libfoo/android_arm64_armv8-a_shared/gen/sysprop/public/include/a.sysprop.h
+				.intermediates/libfoo/android_arm64_armv8-a_shared/gen/sysprop/include/path/to/a.sysprop.h
+				.intermediates/libfoo/android_arm64_armv8-a_shared/gen/sysprop/public/include/path/to/a.sysprop.h
 			`),
 		)
 	})
