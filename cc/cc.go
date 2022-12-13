@@ -1387,7 +1387,7 @@ func (c *Module) ExcludeFromRecoverySnapshot() bool {
 
 func isBionic(name string) bool {
 	switch name {
-	case "libc", "libm", "libdl", "libdl_android", "linker", "linkerconfig":
+	case "libc", "libm", "libdl", "libdl_android", "linker":
 		return true
 	}
 	return false
