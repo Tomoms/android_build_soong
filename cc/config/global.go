@@ -249,6 +249,8 @@ var (
 		"-Wno-error=thread-safety-analysis", // appears in art
 	}
 
+	noOverride64GlobalCflags = []string{}
+
 	noOverrideExternalGlobalCflags = []string{
 		"-Wno-sizeof-array-div",
 		"-Wno-unused-but-set-variable",
@@ -393,12 +395,26 @@ func init() {
 		return strings.Join(deviceGlobalCflags, " ")
 	})
 
-	// Export the static default NoOverrideGlobalCflags to Bazel.
+	// Export the static default NoOverrideGlobalCflags and NoOverride64GlobalCflags to Bazel.
 	exportedVars.ExportStringList("NoOverrideGlobalCflags", noOverrideGlobalCflags)
+	exportedVars.ExportStringList("NoOverride64GlobalCflags", noOverride64GlobalCflags)
 	pctx.VariableFunc("NoOverrideGlobalCflags", func(ctx android.PackageVarContext) string {
 		flags := noOverrideGlobalCflags
 		if ctx.Config().IsEnvTrue("LLVM_NEXT") {
 			flags = append(noOverrideGlobalCflags, llvmNextExtraCommonGlobalCflags...)
+			if ctx.Config().Android64() {
+				flags = append(noOverride64GlobalCflags)
+			}
+		}
+		return strings.Join(flags, " ")
+	})
+
+	// Export the static default NoOverride64GlobalCflags to Bazel.
+	exportedVars.ExportStringList("NoOverride64GlobalCflags", noOverride64GlobalCflags)
+	pctx.VariableFunc("NoOverride64GlobalCflags", func(ctx android.PackageVarContext) string {
+		flags := noOverride64GlobalCflags
+		if ctx.Config().IsEnvTrue("LLVM_NEXT") && ctx.Config().Android64() {
+			flags = append(noOverride64GlobalCflags, llvmNextExtraCommonGlobalCflags...)
 		}
 		return strings.Join(flags, " ")
 	})
