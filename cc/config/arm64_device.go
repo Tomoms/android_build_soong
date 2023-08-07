@@ -90,6 +90,10 @@ var (
 			// Use cortex-a53 because kryo385 is not supported in clang.
 			"-mcpu=cortex-a53",
 		},
+		"kryo785": []string{
+			// Disable SVE instructions because Qualcomm disabled SVE in firmware.
+			"-mcpu=cortex-a510+nosve",
+		},
 		"exynos-m1": []string{
 			"-mcpu=exynos-m1",
 		},
@@ -127,6 +131,7 @@ func init() {
 	pctx.StaticVariable("Arm64CortexA53Cflags", strings.Join(arm64CpuVariantCflags["cortex-a53"], " "))
 	pctx.StaticVariable("Arm64CortexA55Cflags", strings.Join(arm64CpuVariantCflags["cortex-a55"], " "))
 	pctx.StaticVariable("Arm64KryoCflags", strings.Join(arm64CpuVariantCflags["kryo"], " "))
+	pctx.StaticVariable("Arm64Kryo785Cflags", strings.Join(arm64CpuVariantCflags["kryo785"], " "))
 	pctx.StaticVariable("Arm64ExynosM1Cflags", strings.Join(arm64CpuVariantCflags["exynos-m1"], " "))
 	pctx.StaticVariable("Arm64ExynosM2Cflags", strings.Join(arm64CpuVariantCflags["exynos-m2"], " "))
 	pctx.StaticVariable("Arm64CortexA510Cflags", strings.Join(arm64CpuVariantCflags["cortex-a510"], " "))
@@ -147,6 +152,7 @@ var (
 		"kryo385":    "${config.Arm64CortexA53Cflags}",
 		"exynos-m1":  "${config.Arm64ExynosM1Cflags}",
 		"exynos-m2":  "${config.Arm64ExynosM2Cflags}",
+		"kryo785":    "${config.Arm64Kryo785Cflags}",
 	}
 
 	arm64CpuVariantLdflags = map[string]string{
