@@ -247,6 +247,8 @@ var (
 		"-Wno-error=enum-constexpr-conversion",               // http://b/243964282
 		// New warnings to be fixed after clang-r477473
 		"-Wno-error=thread-safety-analysis", // appears in art
+		// New warnings to be fixed after clang-r509293
+		"-Wno-error=format",
 	}
 
 	noOverride64GlobalCflags = []string{}
@@ -312,7 +314,7 @@ var (
 	// prebuilts/clang default settings.
 	ClangDefaultBase         = "prebuilts/clang/host"
 	ClangDefaultVersion      = "adrian-clang"
-	ClangDefaultShortVersion = "17"
+	ClangDefaultShortVersion = "18"
 
 	// Directories with warnings from Android.bp files.
 	WarningAllowedProjects = []string{
