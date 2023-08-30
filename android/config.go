@@ -1678,14 +1678,6 @@ func (c *deviceConfig) ShippingApiLevel() ApiLevel {
 	return uncheckedFinalApiLevel(apiLevel)
 }
 
-func (c *deviceConfig) BuildBrokenClangAsFlags() bool {
-	return c.config.productVariables.BuildBrokenClangAsFlags
-}
-
-func (c *deviceConfig) BuildBrokenClangCFlags() bool {
-	return c.config.productVariables.BuildBrokenClangCFlags
-}
-
 func (c *deviceConfig) BuildBrokenClangProperty() bool {
 	return c.config.productVariables.BuildBrokenClangProperty
 }
