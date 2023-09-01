@@ -261,6 +261,35 @@ var (
 		"-Wno-misleading-indentation",
 		"-Wno-array-parameter",
 		"-Wno-gnu-offsetof-extensions",
+		"-Wno-enum-compare",
+		"-Wno-enum-compare-switch",
+
+		// http://b/72331524 Allow null pointer arithmetic until the instances detected by
+		// this new warning are fixed.
+		"-Wno-null-pointer-arithmetic",
+
+		// Bug: http://b/29823425 Disable -Wnull-dereference until the
+		// new instances detected by this warning are fixed.
+		"-Wno-null-dereference",
+
+		// http://b/145211477
+		"-Wno-pointer-compare",
+		"-Wno-final-dtor-non-final-class",
+
+		// http://b/165945989
+		"-Wno-psabi",
+
+		// http://b/199369603
+		"-Wno-null-pointer-subtraction",
+
+		// http://b/175068488
+		"-Wno-string-concatenation",
+
+		// http://b/239661264
+		"-Wno-deprecated-non-prototype",
+
+		// http://b/191699019
+		"-Wno-format-insufficient-args",
 	}
 
 	// Extra cflags for external third-party projects to disable warnings that
