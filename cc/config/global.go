@@ -249,6 +249,10 @@ var (
 		"-Wno-error=thread-safety-analysis", // appears in art
 		// New warnings to be fixed after clang-r509293
 		"-Wno-error=format",
+		// New warnings to be fixed after clang-r514402
+		"-Wno-error=missing-field-initializers",
+		"-Wno-error=tautological-negation-compare",
+		"-Wno-error=enum-conversion",
 	}
 
 	noOverride64GlobalCflags = []string{}
