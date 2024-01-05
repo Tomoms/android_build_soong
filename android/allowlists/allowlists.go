@@ -596,9 +596,6 @@ var (
 		//frameworks/native/libs/input
 		"inputconstants_aidl",
 
-		// needed for aidl_interface's ndk backend
-		"libbinder_ndk",
-
 		"libusb",
 
 		// needed by liblogd
