@@ -467,6 +467,7 @@ var (
 		"libandroid_runtime_lazy",
 		"libandroid_runtime_vm_headers",
 		"libaudioclient_aidl_conversion_util",
+		"libbinder",
 		"libbinder_device_interface_sources",
 		"libbinder_aidl",
 		"libbinder_headers",
