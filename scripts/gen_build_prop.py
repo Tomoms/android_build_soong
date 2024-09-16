@@ -363,12 +363,11 @@ def append_additional_system_props(args):
   # mount system_other partition.
   props.append("ro.postinstall.fstab.prefix=/system")
 
-  enable_target_debugging = True
-  enable_dalvik_lock_contention_logging = True
+  enable_target_debugging = False
+  enable_dalvik_lock_contention_logging = False
   if config["BuildVariant"] == "user" or config["BuildVariant"] == "userdebug":
     # Target is secure in user builds.
     props.append("ro.secure=1")
-    props.append("security.perf_harden=1")
 
     if config["BuildVariant"] == "user":
       # Disable debugging in plain user builds.
