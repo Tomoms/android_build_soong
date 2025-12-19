@@ -133,7 +133,6 @@ func installClean(ctx Context, config Config) {
 		productOut("apex"),
 		productOut("kernel"),
 		productOut("kernel-*"),
-		productOut("recovery_kernel"),
 		productOut("data"),
 		productOut("skin"),
 		productOut("obj/NOTICE_FILES"),
