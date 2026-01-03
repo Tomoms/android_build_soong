@@ -1083,6 +1083,8 @@ func (f *filesystem) verifyGenericConfig(ctx android.ModuleContext, specs map[st
 		"notice_xml_system",
 		// product_config collects all product variables that are required in every partition.
 		"product_config",
+		"hosts.adblock",
+		"etc_hosts",
 	}
 
 	nonGenericModules := make(map[string]string)
